@@ -1,0 +1,20 @@
+<!doctype html><html lang="my"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Movie Recap Studio Pro</title><link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"></head>
+<body><main class="shell"><header class="hero"><div class="logo">▶</div><p class="eyebrow">ONE-CLICK CREATOR</p><h1>Movie Recap <span>Studio Pro</span></h1>
+<p class="sub">မြန်မာ AI အသံမျိုးစုံ · Subtitle · English Subtitle Blur · Shorts</p></header>
+<section class="panel"><form id="form">
+<label for="youtube_url">YouTube Video Link</label><input id="youtube_url" name="youtube_url" type="url" placeholder="https://www.youtube.com/watch?v=...">
+<p class="hint">ဖတ်ယူနိုင်တဲ့ Captions ရှိတဲ့ Video ကိုရွေးပါ။ YouTube link ကနေ မူရင်း movie file ကို download မလုပ်ပါ။</p>
+<div class="or">သို့မဟုတ် Transcript ကို Paste လုပ်ပါ</div><label for="transcript">Transcript / ဇာတ်လမ်းအကြောင်းအရာ</label>
+<textarea id="transcript" name="transcript" rows="4" placeholder="Caption မရရင် အသုံးပြုခွင့်ရှိတဲ့ transcript ထည့်ပါ။"></textarea>
+<div class="fields"><div><label for="duration">Recap အရှည်</label><select id="duration" name="duration"><option value="1">1 မိနစ်</option><option value="3" selected>3 မိနစ်</option><option value="5">5 မိနစ်</option><option value="10">10 မိနစ်</option></select></div>
+<div><label for="style">ဇာတ်ကြောင်းပုံစံ</label><select id="style" name="style"><option>Suspenseful and emotional</option><option>Fast-paced and exciting</option><option>Calm documentary</option><option>Dark mystery</option></select></div></div>
+<label for="voice">AI မြန်မာအသံ Preset</label><select id="voice" name="voice">{% for key, preset in presets.items() %}<option value="{{ key }}">{{ preset.label }}</option>{% endfor %}</select>
+<p class="hint">နာမည်တွေက Voice Preset နာမည်များဖြစ်ပြီး တကယ့်လူတစ်ဦးရဲ့အသံကို clone လုပ်တာ မဟုတ်ပါ။ TTS service က ပေးထားတဲ့ မြန်မာအသံကို သုံးပါတယ်။</p>
+<label for="video">ကိုယ်ပိုင် / ခွင့်ပြုထားတဲ့ Video Clip</label><input id="video" name="video" type="file" accept="video/*,.mp4,.mov,.mkv,.webm,.m4v">
+<label class="check"><input type="checkbox" name="blur_english" checked> မူရင်း Video အောက်ခြေ English Subtitle နေရာကို Blur လုပ်ရန်</label>
+<p class="hint">Subtitle နေရာမတူတဲ့ Video တွေမှာ အောက်ခြေ 23% ကို blur လုပ်ပေးပါတယ်။ မျက်နှာ၊ အရေးကြီးတဲ့အရာတွေပါ Blur ဖြစ်ရင် option ကို ပိတ်ပါ။</p>
+<button id="go" type="submit">✦ Create Recap</button></form><div id="status" class="status" aria-live="polite"></div></section>
+<section id="result" class="panel hidden"><h2>Recap Ready ✓</h2><p id="message" class="hint"></p><label for="script">မြန်မာ Recap Script</label><textarea id="script" rows="8" readonly></textarea><div id="links" class="links"></div></section>
+<footer>Free-tier quotas can change. Use only transcripts and footage you are allowed to process.</footer></main>
+<script src="{{ url_for('static', filename='app.js') }}"></script></body></html>
